@@ -27,6 +27,9 @@ for file in config['files']:
         # Read the contents of the code file
         with open(file['name'], 'r') as f:
             file_data = f.read()
+         # Remove all lines that begin with # or //
+        # file_data = re.sub(r'^(#|//).*\n?', '', file_data, flags=re.MULTILINE)
+        file_data = re.sub(r'(#|//).*', '', file_data)
         # Update the data field in the config with the code file data and remove unecessary spaces
         file['data'] = re.sub(r'\s{2,}', ' ', file_data)
         print(f"File found: {file['name']}")
