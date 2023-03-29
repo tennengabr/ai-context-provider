@@ -17,7 +17,7 @@ try:
         config = json.load(f)
     print(f"Config file found: {args.config}")
 except FileNotFoundError:
-    print(f"Error: Config file not found {args.config}")
+    print(f"Error: No config file passed. No default config.json found {args.config}")
     exit(1)
 
 # Process each file in the config
