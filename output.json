@@ -1,0 +1,8 @@
+{
+  "files": [
+    {
+      "name": "main.py",
+      "data": "import argparse\nimport json\n\n# Parse command-line arguments\nparser = argparse.ArgumentParser()\nparser.add_argument('--config', type=str, default='config.json', help='Path to the config file')\nargs = parser.parse_args()\n\n# Read the config file\nwith open(args.config, 'r') as f:\n    config = json.load(f)\n\n# Process each file in the config\nfor file in config['files']:\n    # Read the contents of the code file\n    with open(file['name'], 'r') as f:\n        file_data = f.read()\n\n    # Update the data field in the config with the code file data\n    file['data'] = file_data\n\n# Write the updated config to a new JSON file\nwith open('output.json', 'w') as f:\n    json.dump(config, f, indent=2)"
+    }
+  ]
+}
